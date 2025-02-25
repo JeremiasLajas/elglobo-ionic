@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="M1"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Globo animado -->
+  <div class="globo-container">
+    <img src="assets/globo.png" class="globo" [@flyAway]>
+  </div>
+
+  <div id="container">
+    <h1 [@fadeIn] class="bienvenida">Bienvenidos a GloboApp</h1>
+    <h2 class="subtitulo">Gestiona el club de una manera organizada.</h2>
+  </div>
+</ion-content>

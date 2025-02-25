@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverALista()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ esEdicion ? 'Editar Socio' : 'Nuevo Socio' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1> {{socio?.nombre}} {{socio.apellido}} </h1>
+  <form (ngSubmit)="guardarRegistro(id)">
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="socio.apellido" name="apellido" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="socio.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">DNI</ion-label>
+      <ion-input type="number" [(ngModel)]="socio.dni" name="dni" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select [(ngModel)]="socio.categoria" name="categoria" required>
+        <ion-select-option value="CADETE">Cadete</ion-select-option>
+          <ion-select-option value="ACTIVO_MASCULINO">Activo Masculino</ion-select-option>
+          <ion-select-option value="ACTIVO_FEMENINO">Activo Femenino</ion-select-option>
+          <ion-select-option value="VITALICIO">Vitalicio</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-footer>
+      <ion-button expand="full" type="submit" color="success">{{ esEdicion ? 'Actualizar' : 'Guardar' }}</ion-button>
+    </ion-footer>
+  </form>
+</ion-content>

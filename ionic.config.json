@@ -1,0 +1,7 @@
+{
+  "name": "ElGloboApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

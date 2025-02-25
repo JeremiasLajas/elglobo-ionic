@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de Socios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="tabla-container">
+    <h2>Lista de Socios</h2>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button color="success" [routerLink]="['/registro', 0]" >
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-grid>
+      <!-- Encabezados -->
+      <ion-row class="encabezado">
+        <ion-col size="4"><strong>Apellido y Nombre</strong></ion-col>
+        <ion-col size="2"><strong>DNI</strong></ion-col>
+        <ion-col size="3"><strong>Categoría</strong></ion-col>
+        <ion-col size="3"><strong>Acciones</strong></ion-col>
+      </ion-row>
+
+      <!-- Filas de datos -->
+      <ion-row *ngFor="let socio of socios" [@fadeIn]>
+        <ion-col size="4">{{ socio.apellido }}, {{ socio.nombre }}</ion-col>
+        <ion-col size="2">{{ socio.dni }}</ion-col>
+        <ion-col size="3">{{ socio.categoria }}</ion-col>
+        <ion-col size="3">
+          <ion-button fill="clear" color="primary" [routerLink]="['/registro', socio.id]">
+            <ion-icon name="create">edit</ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" (click)="eliminarRegistro(socio.id, socio.nombre)">
+            <ion-icon name="trash">delete</ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
