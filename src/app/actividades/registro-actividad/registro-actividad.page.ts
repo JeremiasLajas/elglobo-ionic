@@ -4,24 +4,25 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router  } from '@angular/router';
 import { SociosService } from '../../services/socios.service';
 import { IonicModule } from '@ionic/angular';
+import { ActividadesService } from '../../services/actividades.service';
 
 @Component({
-  selector: 'app-registro-socio',
-  templateUrl: './registro-socio.page.html',
-  styleUrls: ['./registro-socio.page.scss'],
+  selector: 'app-registro-actividad',
+  templateUrl: './registro-actividad.page.html',
+  styleUrls: ['./registro-actividad.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class RegistroSocioPage implements OnInit {
+export class RegistroActividadPage implements OnInit {
 id: any;
 items: any;
-socio: any = {nombre: '', apellido: '', dni: '', fecha_nacimiento:'', telefono:'', direccion: '', categoria: '', zona_cobranza: '', antiguedad:'', estado:'' };
+actividad: any = {nombre: '', dia: '', horario: ''};
 esEdicion: boolean = false;
 
   constructor(
     private ruta : ActivatedRoute,
     private router : Router  ,
-    private socioService : SociosService,
+    private actividadesService : ActividadesService,
     
   ) { }
 
@@ -31,40 +32,40 @@ esEdicion: boolean = false;
       this.obtenerRegistro(this.id);
       this.esEdicion = true
     } else {
-      this.socio = this.socioService.socio;
+      this.actividad = this.actividadesService.actividad;
     }
   }
   
   volverALista() {
-    this.router.navigate(['/lista-socios']);
+    this.router.navigate(['/lista-actividades']);
   }
 
   obtenerRegistro(id:any) : void {
-    this.socioService.getSocio(id)
+    this.actividadesService.getActividad(id)
     .subscribe(
       (res: any) => {
         this.items = res;
-        this.socio = this.items[0];
+        this.actividad = this.items[0];
         console.log(this.items);
-        console.log(this.socio);
+        console.log(this.actividad);
       },
       (error) => { console.error (error); }
     );
   }
 
   guardarRegistro(id: any): void {    
-    this.socioService.guardarSocio(id, this.socio);
-    alert('Socio guardado!');
-    this.router.navigate(['/lista-socios']); // this.router.navigateByUrl('/');
+    this.actividadesService.guardarActividad(id, this.actividad);
+    alert('Actividad guardada!');
+    this.router.navigate(['/lista-actividades']); // this.router.navigateByUrl('/');
   }
 
   eliminarRegistro(id: any, nombre: string): void {
-    let respuesta = confirm(`¿Desea eliminar a ${nombre}?`);
+    let respuesta = confirm(`¿Desea eliminar ${nombre}?`);
     if (respuesta) {
       if (respuesta) {
-        this.socioService.eliminarSocio(id);
-        alert('Socio eliminado!');
-        this.router.navigate(['/lista-socios']);
+        this.actividadesService.eliminarActividad(id);
+        alert('actividad eliminada!');
+        this.router.navigate(['/lista-actividades']);
       };
     }
   }
@@ -72,3 +73,4 @@ esEdicion: boolean = false;
 
 
 }
+

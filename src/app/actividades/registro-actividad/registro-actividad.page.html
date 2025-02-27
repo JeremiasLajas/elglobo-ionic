@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverALista()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ esEdicion ? 'Editar Actividad' : 'Nuevo Actividad' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1> {{actividad?.nombre}} </h1>
+  <form (ngSubmit)="guardarRegistro(id)">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="actividad.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Dia/s</ion-label>
+      <ion-input type="text" [(ngModel)]="actividad.dia" name="dia" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Horario</ion-label>
+      <ion-select [(ngModel)]="actividad.horario" name="horario" required >
+        <ion-select-option value="MATUTINO">MATUTINO</ion-select-option>
+        <ion-select-option value="VESPERTINO">VESPERTINO</ion-select-option>
+        <ion-select-option value="NOCTURNO">NOCTURNO</ion-select-option>
+      </ion-select>
+    </ion-item> 
+    <ion-footer>
+      <ion-button expand="full" type="submit" color="success">{{ esEdicion ? 'Actualizar' : 'Guardar' }}</ion-button>
+    </ion-footer>
+  </form>
+</ion-content>

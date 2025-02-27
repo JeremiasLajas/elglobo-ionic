@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <h1> {{socio?.nombre}} {{socio.apellido}} </h1>
+  <h1> {{socio?.nombre}} {{socio?.apellido}} </h1>
   <form (ngSubmit)="guardarRegistro(id)">
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
@@ -26,14 +26,44 @@
       <ion-label position="floating">DNI</ion-label>
       <ion-input type="number" [(ngModel)]="socio.dni" name="dni" required></ion-input>
     </ion-item>
-
+    <ion-item>
+      <ion-input type="date" [(ngModel)]="socio.fecha_nacimiento" name="fecha_nacimiento" placeholder="Nacimiento" required ></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input type="number" [(ngModel)]="socio.telefono" name="telefono" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input type="text" [(ngModel)]="socio.direccion" name="direccion" required></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label position="floating">Categoría</ion-label>
       <ion-select [(ngModel)]="socio.categoria" name="categoria" required>
         <ion-select-option value="CADETE">Cadete</ion-select-option>
-          <ion-select-option value="ACTIVO_MASCULINO">Activo Masculino</ion-select-option>
-          <ion-select-option value="ACTIVO_FEMENINO">Activo Femenino</ion-select-option>
-          <ion-select-option value="VITALICIO">Vitalicio</ion-select-option>
+        <ion-select-option value="ACTIVO_MASCULINO">Activo Masculino</ion-select-option>
+        <ion-select-option value="ACTIVO_FEMENINO">Activo Femenino</ion-select-option>
+        <ion-select-option value="VITALICIO">Vitalicio</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Zona cobranza</ion-label>
+      <ion-select [(ngModel)]="socio.zona_cobranza" name="zona_cobranza" required>
+        <ion-select-option value="0">Club</ion-select-option>
+        <ion-select-option value="1">Sr. Pérez</ion-select-option>
+        <ion-select-option value="2">Sr. García</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Antiguedad</ion-label>
+      <ion-input type="text" [(ngModel)]="socio.antiguedad" name="antiguedad" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Estado</ion-label>
+      <ion-select [(ngModel)]="socio.estado" name="estado" required >
+        <ion-select-option value="ACTIVO">ACTIVO</ion-select-option>
+        <ion-select-option value="MOROSO">MOROSO</ion-select-option>
+        <ion-select-option value="SUSPENDIDO">SUSPENDIDO</ion-select-option>
       </ion-select>
     </ion-item>
 
